@@ -16,8 +16,5 @@
       "description": "Environment (development, staging, production)",
       "value": "production"
     }
-  },
-  "buildConfig": {
-    "maxLambdaSize": "50mb"
   }
 }
