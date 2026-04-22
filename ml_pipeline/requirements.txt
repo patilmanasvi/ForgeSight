@@ -1,0 +1,17 @@
+# Core ML libraries
+jax[cpu]
+flax
+optax
+
+# Data processing
+numpy
+tensorflow-datasets
+
+# Google Cloud integrations
+google-cloud-aiplatform
+google-cloud-storage
+google-cloud-bigquery
+
+# Explainability (XAI)
+grad-cam
+opencv-python-headless

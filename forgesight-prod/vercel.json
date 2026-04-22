@@ -1,0 +1,23 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "installCommand": "npm install",
+  "framework": "create-react-app",
+  "env": {
+    "REACT_APP_API_URL": {
+      "description": "Base URL for API",
+      "value": ""
+    },
+    "REACT_APP_POLYGON_RPC": {
+      "description": "Polygon RPC endpoint",
+      "value": "https://polygon-rpc.com"
+    },
+    "REACT_APP_ENVIRONMENT": {
+      "description": "Environment (development, staging, production)",
+      "value": "production"
+    }
+  },
+  "buildConfig": {
+    "maxLambdaSize": "50mb"
+  }
+}

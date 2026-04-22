@@ -1,0 +1,68 @@
+# macOS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.cursor/
+*.swp
+*.swo
+*.log
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+*.p12
+*.crt
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+**/venv/
+
+# Node / frontend
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.netlify/
+.vercel/
+build/
+dist/
+coverage/
+.cache/
+
+# Databases and local runtime files
+*.db
+*.sqlite
+*.sqlite3
+
+# ML / model artifacts
+*.msgpack
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.onnx
+*.ckpt
+
+# Project-specific sensitive/large files
+backend/forgesight-494003-8cce2170f671.json
+backend/forgesight_vit_weights.msgpack
+backend/forensics.db
+

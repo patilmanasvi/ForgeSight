@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+google-genai
+python-dotenv
+Pillow
+jax
+jaxlib
+flax
+msgpack
