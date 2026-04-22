@@ -120,25 +120,37 @@ except Exception as e:
 
 # This is a security feature (CORS). It tells the backend it is safe to 
 # accept requests from our React frontend running on port 3000.
+raw_origins = os.getenv("CORS_ALLOW_ORIGINS", "").strip()
+
+if raw_origins == "*":
+
+    origins = ["*"]
+
+    allow_credentials = False
+
+else:
+
+    origins = [o.strip() for o in raw_origins.split(",") if o.strip()]
+
+    if not origins:
+
+        origins = ["https://forgesight-polaris.vercel.app"]
+
+    allow_credentials = True
+
 app.add_middleware(
+
     CORSMiddleware,
-    allow_origins=(
-        ["*"]
-        if (os.environ.get("CORS_ALLOW_ORIGINS", "").strip() == "*")
-        else (
-            [
-                o.strip()
-                for o in os.environ.get("CORS_ALLOW_ORIGINS", "").split(",")
-                if o.strip()
-            ]
-            or [
-                "http://localhost:3000",
-                "http://127.0.0.1:3000",
-                "http://localhost:5173",
-                "http://127.0.0.1:5173",
-            ]
-        )
-    ),
+
+    allow_origins=origins,
+
+    allow_credentials=allow_credentials,
+
+    allow_methods=["*"],
+
+    allow_headers=["*"],
+
+)
     # Browsers disallow credentialed requests with wildcard CORS; we also
     # set allow_credentials=false when allow_origins="*".
     allow_credentials=(
