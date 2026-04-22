@@ -1,5 +1,7 @@
 import os
 import json
+import asyncio
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
@@ -15,8 +17,6 @@ from model_inference import get_detector
 # ----------------------------
 load_dotenv()
 
-app = FastAPI()
-
 # ----------------------------
 # Gemini client
 # ----------------------------
@@ -29,7 +29,22 @@ except Exception as e:
     print(f"Gemini init error: {e}")
 
 # ----------------------------
-# CORS FIXED
+# Lifespan - preload model in background
+# ----------------------------
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("🚀 Starting up — preloading model in background...")
+    asyncio.create_task(asyncio.to_thread(get_detector))
+    yield
+    print("🛑 Shutting down")
+
+# ----------------------------
+# App
+# ----------------------------
+app = FastAPI(lifespan=lifespan)
+
+# ----------------------------
+# CORS
 # ----------------------------
 raw_origins = os.getenv("CORS_ALLOW_ORIGINS", "").strip()
 
@@ -90,12 +105,8 @@ def _safe_gemini_explanation(image_bytes, mime_type, verdict, confidence):
         return None
     if verdict not in ["FAKE", "UNSURE"]:
         return None
-
     try:
-        prompt = (
-            "Explain possible deepfake indicators in bullet points only."
-        )
-
+        prompt = "Explain possible deepfake indicators in bullet points only."
         response = client.models.generate_content(
             model="gemini-2.0-flash-001",
             contents=[
@@ -103,7 +114,6 @@ def _safe_gemini_explanation(image_bytes, mime_type, verdict, confidence):
                 prompt,
             ],
         )
-
         return response.text.strip() if response.text else None
     except:
         return None
@@ -116,18 +126,18 @@ async def detect_frame(request: Request):
     print("🔵 Request received")
     form_data = await request.form()
     print("🟡 Form data parsed")
-    
+
     if "file" not in form_data:
         raise HTTPException(status_code=400, detail="No file uploaded")
-    
+
     file_item = form_data["file"]
     image_bytes = await file_item.read()
     mime_type = file_item.content_type or "image/jpeg"
     print(f"🟢 Image received: {len(image_bytes)} bytes, type: {mime_type}")
-    
+
     if not mime_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Only images allowed")
-    
+
     try:
         print("⚙️ Loading detector...")
         detector = get_detector()
@@ -140,7 +150,7 @@ async def detect_frame(request: Request):
         if gemini_verdict:
             result["gemini_verdict"] = gemini_verdict
 
-         #Gemini explanation
+        # Gemini explanation
         explanation = _safe_gemini_explanation(
             image_bytes,
             mime_type,
