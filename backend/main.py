@@ -130,19 +130,19 @@ async def detect_frame(request: Request):
         result = detector.predict(image_bytes)
 
         # Gemini optional verdict
-       # gemini_verdict = _safe_gemini_verdict(image_bytes, mime_type)
-        #if gemini_verdict:
-            #result["gemini_verdict"] = gemini_verdict
+        gemini_verdict = _safe_gemini_verdict(image_bytes, mime_type)
+        if gemini_verdict:
+            result["gemini_verdict"] = gemini_verdict
 
-        # Gemini explanation
-        #explanation = _safe_gemini_explanation(
-           # image_bytes,
-           # mime_type,
-           # result.get("verdict", "UNSURE"),
-          #  float(result.get("confidence", 0.0)),
-       # )
-       # if explanation:
-          #  result["explanation"] = explanation
+         #Gemini explanation
+        explanation = _safe_gemini_explanation(
+            image_bytes,
+            mime_type,
+            result.get("verdict", "UNSURE"),
+            float(result.get("confidence", 0.0)),
+        )
+        if explanation:
+            result["explanation"] = explanation
 
         # DB log
         try:
