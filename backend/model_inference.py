@@ -1,4 +1,7 @@
 import os
+os.environ["JAX_PLATFORMS"] = "cpu"
+os.environ["XLA_PYTHON_CLIENT_PREALLOCATE"] = "false"
+os.environ["XLA_PYTHON_CLIENT_MEM_FRACTION"] = "0.5"
 import io
 import jax
 import jax.numpy as jnp
