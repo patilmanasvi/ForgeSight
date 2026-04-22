@@ -113,21 +113,27 @@ def _safe_gemini_explanation(image_bytes, mime_type, verdict, confidence):
 # ----------------------------
 @app.post("/v1/detect/frame")
 async def detect_frame(request: Request):
+    print("🔵 Request received")
     form_data = await request.form()
-
+    print("🟡 Form data parsed")
+    
     if "file" not in form_data:
         raise HTTPException(status_code=400, detail="No file uploaded")
-
+    
     file_item = form_data["file"]
     image_bytes = await file_item.read()
     mime_type = file_item.content_type or "image/jpeg"
-
+    print(f"🟢 Image received: {len(image_bytes)} bytes, type: {mime_type}")
+    
     if not mime_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Only images allowed")
-
+    
     try:
+        print("⚙️ Loading detector...")
         detector = get_detector()
+        print("✅ Detector loaded, running predict...")
         result = detector.predict(image_bytes)
+        print(f"✅ Prediction done: {result}")
 
         # Gemini optional verdict
         gemini_verdict = _safe_gemini_verdict(image_bytes, mime_type)
