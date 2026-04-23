@@ -10,7 +10,7 @@
 [![React](https://img.shields.io/badge/Frontend-React%2018-61DAFB?logo=react)](https://reactjs.org/)
 [![JAX](https://img.shields.io/badge/ML-JAX%20%2F%20Flax-A67C52)](https://jax.readthedocs.io/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python)](https://python.org)
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-4A90D9?logo=vercel)](https://forgesight-polaris.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-4A90D9?logo=vercel)](https://forgesight-polaris.vercel.app)
 
 **ForgeSight** is an end-to-end deepfake image detection prototype that combines a modern React frontend, a FastAPI backend, and a custom JAX/Flax Hybrid Vision Transformer (HybridViT) model. Upload an image — get a verdict.
 
