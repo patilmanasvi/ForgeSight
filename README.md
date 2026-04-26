@@ -198,6 +198,13 @@ GEMINI_API_KEY=your_gemini_api_key_here
 
 ---
 
+## 📺 Project Demo
+Click the button or the image below to view the demo video on Google Drive.
+
+[![Watch Demo Video](https://img.shields.io/badge/Demo-Play%20Video-red?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/15Q9NLs9_dVcy4fKxDtjpQENn-04VS_pi/view?usp=drivesdk)
+
+---
+
 ## 📄 License
 
 This project is licensed under the **MIT License**
