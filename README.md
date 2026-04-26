@@ -2,7 +2,7 @@
 
 <h1 align="center"><strong>ForgeSight</strong></h1>
 
-### An AI-Powered Deepfake Image Detection System
+### AI-Powered Deepfake Image Detection System
 
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
