@@ -24,7 +24,7 @@
 |---|---|
 | 🖼️ **Image Upload** | Accept JPG, PNG, or WEBP via a clean browser interface |
 | 🤖 **AI Inference** | Run a custom HybridViT model to classify image authenticity |
-| 🏷️ **Verdict Engine** | Returns `REAL`, `FAKE`, or `UNSURE` with a confidence score |
+| 🏷️ **Verdict Engine** | Returns `REAL` or `FAKE` with a confidence score |
 | 🔎 **Gemini Explanation** | Optionally uses Google Gemini to generate visual explanation bullets for suspicious media |
 | 🗄️ **Forensic Logging** | Logs every detection to a local SQLite database (media hash + metadata) |
 | 📋 **Audit Endpoint** | Query recent detections via a dedicated REST endpoint |
