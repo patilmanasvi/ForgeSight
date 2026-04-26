@@ -192,9 +192,7 @@ GEMINI_API_KEY=your_gemini_api_key_here
 1. Open **http://localhost:3000** in your browser
 2. Navigate to the **Detection Console**
 3. Upload a `.jpg`, `.png`, or `.webp` image
-4. View the verdict (`REAL` / `FAKE` / `UNSURE`) and confidence score
-5. Review optional Gemini explanation bullets (if API key is configured)
-6. Inspect the forensic audit log via **http://localhost:8000/v1/audit**
+4. View the verdict (`REAL` / `FAKE`) and confidence score.
 
 ---
 
